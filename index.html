@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Tax Eligibility Assessment</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .hint {
+            color: #888;
+            font-size: 0.9em;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+
+        input[type="radio"], select {
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Corporate Tax Eligibility Assessment</h1>
+
+    <div class="container">
+        <form id="questionnaire">
+            <!-- General Business Information -->
+            <div class="question">
+                <label>Is your company incorporated or registered in a Free Zone?</label>
+                <div class="hint">Hint: Select "Yes" to increase your chances of qualifying for the 0% tax rate.</div>
+                <input type="radio" name="q1" value="Yes"> Yes
+                <input type="radio" name="q1" value="No"> No
+            </div>
+
+            <div class="question">
+                <label>What is the primary business activity of your company?</label>
+                <div class="hint">Hint: Select "Qualifying Activity" (e.g., manufacturing, fund management) to increase your chances.</div>
+                <select name="q2">
+                    <option value="qualifying">Qualifying Activity (e.g., Manufacturing, Fund Management)</option>
+                    <option value="non-qualifying">Non-Qualifying Activity (Services)</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>Does your company hold a valid license from the relevant Free Zone Authority?</label>
+                <div class="hint">Hint: A valid Free Zone license is required to qualify for the 0% tax rate.</div>
+                <input type="radio" name="q3" value="Yes"> Yes
+                <input type="radio" name="q3" value="No"> No
+            </div>
+
+            <!-- Revenue and Income -->
+            <div class="question">
+                <label>What percentage of your company’s total revenue is derived from transactions with other Free Zone persons?</label>
+                <div class="hint">Hint: A higher percentage of revenue from Free Zone persons increases your chances (choose 50%-100% or more).</div>
+                <select name="q4">
+                    <option value="less50">Less than 50%</option>
+                    <option value="50-100">50%-100%</option>
+                    <option value="more100">More than 100%</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>Is your company generating non-qualifying revenue?</label>
+                <div class="hint">Hint: Less than 5% non-qualifying revenue or none at all increases your chances.</div>
+                <input type="radio" name="q5" value="less5"> Less than 5%
+                <input type="radio" name="q5" value="more5"> 5% or more
+                <input type="radio" name="q5" value="none"> No non-qualifying revenue
+            </div>
+
+            <!-- Substance Requirements -->
+            <div class="question">
+                <label>Does your company have adequate substance in the UAE, including sufficient employees, assets, and operating expenses?</label>
+                <div class="hint">Hint: Adequate substance is required for the 0% corporate tax rate. Select "Yes".</div>
+                <input type="radio" name="q6" value="Yes"> Yes
+                <input type="radio" name="q6" value="No"> No
+            </div>
+
+            <div class="question">
+                <label>Are your company’s core income-generating activities performed within the Free Zone?</label>
+                <div class="hint">Hint: Select "Yes" for better eligibility. Activities should be done within the Free Zone.</div>
+                <input type="radio" name="q7" value="Yes"> Yes
+                <input type="radio" name="q7" value="No"> No
+                <input type="radio" name="q7" value="Partially"> Partially
+            </div>
+
+            <!-- Financial and Documentation Compliance -->
+            <div class="question">
+                <label>Has your company prepared and maintained audited financial statements?</label>
+                <div class="hint">Hint: Select "Yes" to ensure compliance with financial regulations.</div>
+                <input type="radio" name="q8" value="Yes"> Yes
+                <input type="radio" name="q8" value="No"> No
+            </div>
+
+            <div class="question">
+                <label>Does your company comply with UAE transfer pricing rules?</label>
+                <div class="hint">Hint: Compliance with transfer pricing rules is mandatory. Select "Yes".</div>
+                <input type="radio" name="q9" value="Yes"> Yes
+                <input type="radio" name="q9" value="No"> No
+            </div>
+
+            <div class="question">
+                <label>Has your company elected to be taxed at the 9% corporate tax rate?</label>
+                <div class="hint">Hint: Select "No" to maintain eligibility for the 0% rate.</div>
+                <input type="radio" name="q10" value="Yes"> Yes
+                <input type="radio" name="q10" value="No"> No
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
