@@ -1,169 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corporate Tax Eligibility Assessment</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UAE CORPORATE TAX SELF ASSESSMENT TEST</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Playfair Display', serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('pexels-ahsan-15317952.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+    }
 
-        h1 {
-            text-align: center;
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
-            margin: 0;
-        }
+    .container {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 40px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+    }
 
-        .container {
-            max-width: 800px;
-            margin: 30px auto;
-            background-color: #fff;
-            padding: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 40px;
+      animation: fadeIn 6s ease-in-out;
+      color: #00aaff;
+    }
 
-        .question {
-            margin-bottom: 20px;
-        }
+    .question {
+      margin-bottom: 30px;
+      display: none;
+      text-align: left; /* Align questions to the left */
+      position: relative; /* Needed for hint positioning */
+    }
 
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 10px;
-        }
+    .question.active {
+      display: block;
+      animation: fadeIn 2s ease-in-out;
+    }
 
-        .hint {
-            color: #888;
-            font-size: 0.9em;
-            margin-top: -10px;
-            margin-bottom: 10px;
-        }
+    label {
+      display: block;
+      margin-bottom: 30px;
+      margin: 10px 0;
+      font-size: 2rem;
+      text-align: left; /* Align question to the left */
+    }
 
-        input[type="radio"], select {
-            margin-right: 10px;
-        }
+    .question-number {
+      font-weight: bold;
+      margin-right: 5px;
+    }
 
-        button {
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+    .choices-container label {
+      font-size: 1.5rem; /* Increase the font size of Yes/No text */
+      display: block;
+      padding-left: 20px; /* Align Yes/No text with the question */
+    }
 
-        button:hover {
-            background-color: #218838;
-        }
+    input[type="radio"] {
+      margin-bottom: 20px;
+      transform: scale(1.5);
+      margin-right: 10px;
+    }
 
-        #result {
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-        }
-    </style>
+    button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #00a2ff;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 0 auto;
+      display: block;
+      margin-top: 30px; /* More gap between choices and button */
+    }
+
+    button:hover {
+      background-color: #007acc;
+    }
+
+    .result {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.5rem;
+    }
+
+    .whatsapp-button {
+      display: none;
+      background-color: #25D366;
+      padding: 10px 20px;
+      border-radius: 5px;
+      color: white;
+      margin-top: 20px;
+      text-decoration: none;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    .whatsapp-button img {
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    /* Hint styling - hover on label specifically */
+    label[data-hint]:hover::after {
+      content: attr(data-hint);
+      display: block;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 5px 10px;
+      position: absolute;
+      border-radius: 5px;
+      top: -40px;
+      left: 0; /* Align the hint to the left of the question */
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
 </head>
 <body>
-    <h1>Corporate Tax Eligibility Assessment</h1>
 
-    <div class="container">
-        <form id="questionnaire">
-            <!-- General Business Information -->
-            <div class="question">
-                <label>Is your company incorporated or registered in a Free Zone?</label>
-                <div class="hint">Hint: Select "Yes" to increase your chances of qualifying for the 0% tax rate.</div>
-                <input type="radio" name="q1" value="Yes"> Yes
-                <input type="radio" name="q1" value="No"> No
-            </div>
+  <div class="container">
+    <h1>UAE CORPORATE TAX SELF ASSESSMENT TEST</h1>
 
-            <div class="question">
-                <label>What is the primary business activity of your company?</label>
-                <div class="hint">Hint: Select "Qualifying Activity" (e.g., manufacturing, fund management) to increase your chances.</div>
-                <select name="q2">
-                    <option value="qualifying">Qualifying Activity (e.g., Manufacturing, Fund Management)</option>
-                    <option value="non-qualifying">Non-Qualifying Activity (Services)</option>
-                </select>
-            </div>
+    <form id="questionnaire">
+      <div class="question active" id="question1">
+        <label data-hint="Choosing 'Yes' increases your eligibility.">
+          <span class="question-number">1.</span> Is your company incorporated or registered in a Free Zone?
+        </label>
+        <div class="choices-container">
+          <label><input type="radio" name="q1" value="yes"> Yes</label>
+          <label><input type="radio" name="q1" value="no"> No</label>
+        </div>
+        <button type="button" onclick="nextQuestion(2)">Next</button>
+      </div>
 
-            <div class="question">
-                <label>Does your company hold a valid license from the relevant Free Zone Authority?</label>
-                <div class="hint">Hint: A valid Free Zone license is required to qualify for the 0% tax rate.</div>
-                <input type="radio" name="q3" value="Yes"> Yes
-                <input type="radio" name="q3" value="No"> No
-            </div>
+      <div class="question" id="question2">
+        <label data-hint="Qualifying activities are more likely to be eligible.">
+          <span class="question-number">2.</span> What is the primary business activity of your company?
+        </label>
+        <div class="choices-container">
+          <label><input type="radio" name="q2" value="Qualifying"> Qualifying Activity</label>
+          <label><input type="radio" name="q2" value="Non-Qualifying"> Non-Qualifying Activity</label>
+        </div>
+        <button type="button" onclick="nextQuestion(3)">Next</button>
+      </div>
 
-            <!-- Revenue and Income -->
-            <div class="question">
-                <label>What percentage of your company’s total revenue is derived from transactions with other Free Zone persons?</label>
-                <div class="hint">Hint: A higher percentage of revenue from Free Zone persons increases your chances (choose 50%-100% or more).</div>
-                <select name="q4">
-                    <option value="less50">Less than 50%</option>
-                    <option value="50-100">50%-100%</option>
-                    <option value="more100">More than 100%</option>
-                </select>
-            </div>
+      <div class="question" id="question3">
+        <label data-hint="A valid license is necessary for eligibility.">
+          <span class="question-number">3.</span> Does your company hold a valid license from the relevant Free Zone Authority?
+        </label>
+        <div class="choices-container">
+          <label><input type="radio" name="q3" value="yes"> Yes</label>
+          <label><input type="radio" name="q3" value="no"> No</label>
+        </div>
+        <button type="button" onclick="nextQuestion(4)">Next</button>
+      </div>
 
-            <div class="question">
-                <label>Is your company generating non-qualifying revenue?</label>
-                <div class="hint">Hint: Less than 5% non-qualifying revenue or none at all increases your chances.</div>
-                <input type="radio" name="q5" value="less5"> Less than 5%
-                <input type="radio" name="q5" value="more5"> 5% or more
-                <input type="radio" name="q5" value="none"> No non-qualifying revenue
-            </div>
+      <div class="question" id="question4">
+        <label data-hint="Qualifying income improves your chances of eligibility.">
+          <span class="question-number">4.</span> Does your company derive income from qualifying activities?
+        </label>
+        <div class="choices-container">
+          <label><input type="radio" name="q4" value="yes"> Yes</label>
+          <label><input type="radio" name="q4" value="no"> No</label>
+        </div>
+        <button type="button" onclick="nextQuestion(5)">Next</button>
+      </div>
 
-            <!-- Substance Requirements -->
-            <div class="question">
-                <label>Does your company have adequate substance in the UAE, including sufficient employees, assets, and operating expenses?</label>
-                <div class="hint">Hint: Adequate substance is required for the 0% corporate tax rate. Select "Yes".</div>
-                <input type="radio" name="q6" value="Yes"> Yes
-                <input type="radio" name="q6" value="No"> No
-            </div>
+      <div class="question" id="question5">
+        <label data-hint="Higher Free Zone revenue increases eligibility.">
+          <span class="question-number">5.</span> What percentage of your company’s total revenue is derived from transactions with other Free Zone persons?
+        </label>
+        <div class="choices-container">
+          <label><input type="radio" name="q5" value="50-100"> 50%-100%</label>
+          <label><input type="radio" name="q5" value="less-50"> Less than 50%</label>
+        </div>
+        <button type="button" onclick="nextQuestion(6)">Next</button>
+      </div>
 
-            <div class="question">
-                <label>Are your company’s core income-generating activities performed within the Free Zone?</label>
-                <div class="hint">Hint: Select "Yes" for better eligibility. Activities should be done within the Free Zone.</div>
-                <input type="radio" name="q7" value="Yes"> Yes
-                <input type="radio" name="q7" value="No"> No
-                <input type="radio" name="q7" value="Partially"> Partially
-            </div>
+      <div class="question" id="question6">
+        <label data-hint="Keeping non-qualifying revenue below 5% helps with eligibility.">
+          <span class="question-number">6.</span> Is your company generating non-qualifying revenue? If yes, what is the percentage of non-qualifying revenue in relation to total revenue?
+        </label>
+        <div class="choices-container">
+          <label><input type="radio" name="q6" value="less-5"> Less than 5%</label>
+          <label><input type="radio" name="q6" value="more-5"> 5% or more</label>
+          <label><input type="radio" name="q6" value="none"> No non-qualifying revenue</label>
+        </div>
+        <button type="button" onclick="nextQuestion(7)">Next</button>
+      </div>
 
-            <!-- Financial and Documentation Compliance -->
-            <div class="question">
-                <label>Has your company prepared and maintained audited financial statements?</label>
-                <div class="hint">Hint: Select "Yes" to ensure compliance with financial regulations.</div>
-                <input type="radio" name="q8" value="Yes"> Yes
-                <input type="radio" name="q8" value="No"> No
-            </div>
+      <div class="question" id="question7">
+        <label data-hint="Adequate substance is crucial for eligibility.">
+          <span class="question-number">7.</span> Does your company have adequate substance in the UAE, including sufficient employees, assets, and operating expenses?
+        </label>
+        <div class="choices-container">
+          <label><input type="radio" name="q7" value="yes"> Yes</label>
+          <label><input type="radio" name="q7" value="no"> No</label>
+        </div>
+        <button type="button" onclick="nextQuestion(8)">Next</button>
+      </div>
 
-            <div class="question">
-                <label>Does your company comply with UAE transfer pricing rules?</label>
-                <div class="hint">Hint: Compliance with transfer pricing rules is mandatory. Select "Yes".</div>
-                <input type="radio" name="q9" value="Yes"> Yes
-                <input type="radio" name="q9" value="No"> No
-            </div>
+      <div class="question" id="question8">
+        <label data-hint="Core activities within the Free Zone increase your chances.">
+          <span class="question-number">8.</span> Are your company’s core income-generating activities performed within the Free Zone?
+        </label>
+        <div class="choices-container">
+          <label><input type="radio" name="q8" value="yes"> Yes</label>
+          <label><input type="radio" name="q8" value="no"> No</label>
+          <label><input type="radio" name="q8" value="partially"> Partially</label>
+        </div>
+        <button type="button" onclick="nextQuestion(9)">Next</button>
+      </div>
 
-            <div class="question">
-                <label>Has your company elected to be taxed at the 9% corporate tax rate?</label>
-                <div class="hint">Hint: Select "No" to maintain eligibility for the 0% rate.</div>
-                <input type="radio" name="q10" value="Yes"> Yes
-                <input type="radio" name="q10" value="No"> No
-            </div>
+      <div class="question" id="question9">
+        <label data-hint="Audited financials are mandatory for eligibility.">
+          <span class="question-number">9.</span> Has your company prepared and maintained audited financial statements as required by law?
+        </label>
+        <div class="choices-container">
+          <label><input type="radio" name="q9" value="yes"> Yes</label>
+          <label><input type="radio" name="q9" value="no"> No</label>
+        </div>
+        <button type="button" onclick="nextQuestion(10)">Next</button>
+      </div>
 
-            <button type="submit">Submit</button>
-        </form>
+      <div class="question" id="question10">
+        <label data-hint="Choosing 0% tax rate is necessary for eligibility.">
+          <span class="question-number">10.</span> Has your company elected to be taxed at the 9% corporate tax rate instead of benefiting from the 0% rate?
+        </label>
+        <div class="choices-container">
+          <label><input type="radio" name="q10" value="yes"> Yes</label>
+          <label><input type="radio" name="q10" value="no"> No</label>
+        </div>
+        <button type="button" onclick="showResult()">Finish</button>
+      </div>
 
-        <div id="result"></div>
-    </div>
+      <div class="result" id="result">
+        <!-- This is where the result (Eligible/Not Eligible) will be displayed -->
+      </div>
+    </form>
 
-    <script src="app.js"></script>
+    <a href="https://wa.me/+971551502005" id="whatsappButton" class="whatsapp-button">
+      <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png"/> Speak to our Corporate Tax Expert
+    </a>
+  </div>
+
+  <script>
+    function nextQuestion(questionNumber) {
+      document.getElementById('question' + (questionNumber - 1)).classList.remove('active');
+      document.getElementById('question' + questionNumber).classList.add('active');
+    }
+
+    function showResult() {
+      document.getElementById('question10').classList.remove('active');
+
+      // Fetching all relevant question answers
+      const q1 = document.querySelector('input[name="q1"]:checked').value;
+      const q2 = document.querySelector('input[name="q2"]:checked').value;
+      const q5 = document.querySelector('input[name="q5"]:checked').value;
+      const q6 = document.querySelector('input[name="q6"]:checked').value;
+      const q7 = document.querySelector('input[name="q7"]:checked').value;
+      const q10 = document.querySelector('input[name="q10"]:checked').value;
+
+      let eligible = true;
+
+      // Logic to determine eligibility:
+      if (q1 === 'no' || q2 === 'Non-Qualifying' || q6 === 'more-5' || q7 === 'no' || q10 === 'yes') {
+        eligible = false;
+      }
+
+      // Display the result
+      const resultDiv = document.getElementById('result');
+      resultDiv.style.display = 'block';
+
+      if (eligible) {
+        resultDiv.innerHTML = '<p style="color: lightgreen;">Congratulations! You are eligible for 0% corporate tax.</p>';
+      } else {
+        resultDiv.innerHTML = '<p style="color: red;">Unfortunately, your company does not qualify for the 0% corporate tax rate.</p>';
+      }
+
+      // Show WhatsApp button after displaying result
+      document.getElementById('whatsappButton').style.display = 'inline-block';
+    }
+  </script>
 </body>
 </html>
