@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UAE CORPORATE TAX SELF ASSESSMENT TEST</title>
   <style>
+    /* Base styles */
     body, html {
       margin: 0;
       padding: 0;
@@ -13,7 +14,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: url('https://github.com/AarifaNayeem/Corporate-Tax-Website/blob/main/pexels-ahsan-15317952.jpg?raw=true') no-repeat center center fixed;
+      background: url('pexels-ahsan-15317952.jpg') no-repeat center center fixed;
       background-size: cover;
       color: white;
       text-align: center;
@@ -21,9 +22,9 @@
 
     .container {
       background: rgba(0, 0, 0, 0.8);
-      padding: 40px;
+      padding: 30px;
       border-radius: 10px;
-      width: 100%;
+      width: 90%;
       max-width: 600px;
       text-align: center;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
@@ -31,18 +32,18 @@
 
     h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 40px;
+      font-size: 36px;
       font-weight: 700;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       animation: fadeIn 6s ease-in-out;
       color: #00aaff;
     }
 
     .question {
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       display: none;
-      text-align: left; /* Align questions to the left */
-      position: relative; /* Needed for hint positioning */
+      text-align: left;
+      position: relative;
     }
 
     .question.active {
@@ -52,10 +53,9 @@
 
     label {
       display: block;
-      margin-bottom: 30px;
-      margin: 10px 0;
-      font-size: 2rem;
-      text-align: left; /* Align question to the left */
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      text-align: left;
     }
 
     .question-number {
@@ -64,28 +64,30 @@
     }
 
     .choices-container label {
-      font-size: 1.5rem; /* Increase the font size of Yes/No text */
+      font-size: 1.3rem;
       display: block;
-      padding-left: 20px; /* Align Yes/No text with the question */
+      padding-left: 20px;
     }
 
     input[type="radio"] {
-      margin-bottom: 20px;
-      transform: scale(1.5);
+      margin-bottom: 15px;
+      transform: scale(1.3);
       margin-right: 10px;
     }
 
     button {
-      padding: 10px 20px;
+      padding: 15px;
       border: none;
       background-color: #00a2ff;
       color: white;
       font-size: 1rem;
       cursor: pointer;
       border-radius: 5px;
-      margin: 0 auto;
+      margin-top: 30px;
+      width: 100%;
+      max-width: 200px;
       display: block;
-      margin-top: 30px; /* More gap between choices and button */
+      margin: 20px auto 0;
     }
 
     button:hover {
@@ -101,13 +103,17 @@
     .whatsapp-button {
       display: none;
       background-color: #25D366;
-      padding: 10px 20px;
+      padding: 15px;
       border-radius: 5px;
       color: white;
       margin-top: 20px;
       text-decoration: none;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       text-align: center;
+      width: 100%;
+      max-width: 300px;
+      display: block;
+      margin: 20px auto;
     }
 
     .whatsapp-button img {
@@ -115,7 +121,6 @@
       margin-right: 10px;
     }
 
-    /* Hint styling - hover on label specifically */
     label[data-hint]:hover::after {
       content: attr(data-hint);
       display: block;
@@ -125,14 +130,62 @@
       position: absolute;
       border-radius: 5px;
       top: -40px;
-      left: 0; /* Align the hint to the left of the question */
+      left: 0;
       font-size: 0.9rem;
       white-space: nowrap;
     }
 
+    /* Keyframe animation */
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
+    }
+
+    /* Responsive Design with Media Queries */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      label {
+        font-size: 1.3rem;
+      }
+
+      .choices-container label {
+        font-size: 1.2rem;
+      }
+
+      button {
+        padding: 12px;
+        font-size: 0.9rem;
+      }
+
+      .whatsapp-button {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      label {
+        font-size: 1.2rem;
+      }
+
+      .choices-container label {
+        font-size: 1.1rem;
+      }
+
+      button {
+        padding: 10px;
+        font-size: 0.8rem;
+      }
+
+      .whatsapp-button {
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
@@ -142,6 +195,7 @@
     <h1>UAE CORPORATE TAX SELF ASSESSMENT TEST</h1>
 
     <form id="questionnaire">
+      <!-- Question 1 -->
       <div class="question active" id="question1">
         <label data-hint="Choosing 'Yes' increases your eligibility.">
           <span class="question-number">1.</span> Is your company incorporated or registered in a Free Zone?
@@ -153,6 +207,7 @@
         <button type="button" onclick="nextQuestion(2)">Next</button>
       </div>
 
+      <!-- Question 2 -->
       <div class="question" id="question2">
         <label data-hint="Qualifying activities are more likely to be eligible.">
           <span class="question-number">2.</span> What is the primary business activity of your company?
@@ -164,6 +219,7 @@
         <button type="button" onclick="nextQuestion(3)">Next</button>
       </div>
 
+      <!-- Question 3 -->
       <div class="question" id="question3">
         <label data-hint="A valid license is necessary for eligibility.">
           <span class="question-number">3.</span> Does your company hold a valid license from the relevant Free Zone Authority?
@@ -175,6 +231,7 @@
         <button type="button" onclick="nextQuestion(4)">Next</button>
       </div>
 
+      <!-- Question 4 -->
       <div class="question" id="question4">
         <label data-hint="Qualifying income improves your chances of eligibility.">
           <span class="question-number">4.</span> Does your company derive income from qualifying activities?
@@ -186,6 +243,7 @@
         <button type="button" onclick="nextQuestion(5)">Next</button>
       </div>
 
+      <!-- Question 5 -->
       <div class="question" id="question5">
         <label data-hint="Higher Free Zone revenue increases eligibility.">
           <span class="question-number">5.</span> What percentage of your company’s total revenue is derived from transactions with other Free Zone persons?
@@ -197,6 +255,7 @@
         <button type="button" onclick="nextQuestion(6)">Next</button>
       </div>
 
+      <!-- Question 6 -->
       <div class="question" id="question6">
         <label data-hint="Keeping non-qualifying revenue below 5% helps with eligibility.">
           <span class="question-number">6.</span> Is your company generating non-qualifying revenue? If yes, what is the percentage of non-qualifying revenue in relation to total revenue?
@@ -209,6 +268,7 @@
         <button type="button" onclick="nextQuestion(7)">Next</button>
       </div>
 
+      <!-- Question 7 -->
       <div class="question" id="question7">
         <label data-hint="Adequate substance is crucial for eligibility.">
           <span class="question-number">7.</span> Does your company have adequate substance in the UAE, including sufficient employees, assets, and operating expenses?
@@ -220,6 +280,7 @@
         <button type="button" onclick="nextQuestion(8)">Next</button>
       </div>
 
+      <!-- Question 8 -->
       <div class="question" id="question8">
         <label data-hint="Core activities within the Free Zone increase your chances.">
           <span class="question-number">8.</span> Are your company’s core income-generating activities performed within the Free Zone?
@@ -232,6 +293,7 @@
         <button type="button" onclick="nextQuestion(9)">Next</button>
       </div>
 
+      <!-- Question 9 -->
       <div class="question" id="question9">
         <label data-hint="Audited financials are mandatory for eligibility.">
           <span class="question-number">9.</span> Has your company prepared and maintained audited financial statements as required by law?
@@ -243,6 +305,7 @@
         <button type="button" onclick="nextQuestion(10)">Next</button>
       </div>
 
+      <!-- Question 10 -->
       <div class="question" id="question10">
         <label data-hint="Choosing 0% tax rate is necessary for eligibility.">
           <span class="question-number">10.</span> Has your company elected to be taxed at the 9% corporate tax rate instead of benefiting from the 0% rate?
@@ -254,11 +317,11 @@
         <button type="button" onclick="showResult()">Finish</button>
       </div>
 
-      <div class="result" id="result">
-        <!-- This is where the result (Eligible/Not Eligible) will be displayed -->
-      </div>
+      <!-- Final Result -->
+      <div class="result" id="result"></div>
     </form>
 
+    <!-- WhatsApp Button -->
     <a href="https://wa.me/+971551502005" id="whatsappButton" class="whatsapp-button">
       <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png"/> Speak to our Corporate Tax Expert
     </a>
