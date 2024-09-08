@@ -27,21 +27,25 @@ function validateEmail() {
 
 async function saveToGoogleSheets(email, responses) {
   try {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbzm8q4zbmFVBxKLOjwoIRq_3LySyqdY8whURhS5fEI4RTMTzS9dFKTKXdDqF0rXG3X2/execYOUR_GOOGLE_SHEET_API_ENDPOINT', {
+    const response = await fetch('http://localhost:3000/submit-data', {  // Send to your backend, not directly to Google Script
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, responses }),
+      body: JSON.stringify({ email, responses }),  // Sending the email and responses to backend server
     });
 
     if (!response.ok) {
-      throw new Error('Failed to save data to Google Sheets');
+      throw new Error('Failed to save data via backend');
     }
+
+    const result = await response.json();
+    console.log('Success:', result);
   } catch (error) {
     console.error('Error:', error);
   }
 }
+
 
 
 // Move to the next question automatically on radio button selection
@@ -84,10 +88,14 @@ function showResult() {
   const responses = {
     q1: document.querySelector('input[name="q1"]:checked').value,
     q2: document.querySelector('input[name="q2"]:checked').value,
+    q3: document.querySelector('input[name="q3"]:checked').value,  // Capture q3
+    q4: document.querySelector('input[name="q4"]:checked').value,  // Capture q4
     q5: document.querySelector('input[name="q5"]:checked').value,
     q6: document.querySelector('input[name="q6"]:checked').value,
     q7: document.querySelector('input[name="q7"]:checked').value,
-    q10: document.querySelector('input[name="q10"]:checked').value,
+    q8: document.querySelector('input[name="q8"]:checked').value,  // Capture q8
+    q9: document.querySelector('input[name="q9"]:checked').value,  // Capture q9
+    q10: document.querySelector('input[name="q10"]:checked').value
   };
 
   let eligible = true;
